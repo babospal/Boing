@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &167219249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1311559191800184372, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_Name
+      value: 5Spikes (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0013175651
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.99999917
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 179.849
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
 --- !u!1001 &190157397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,7 +190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.61
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -820,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.81
+      value: -3.54
       objectReference: {fileID: 0}
     - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1219,7 +1276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.98
+      value: 9.13
       objectReference: {fileID: 0}
     - target: {fileID: 3545098886381313544, guid: d9b17f34e423f674ba22dabfd3acd18e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1564,6 +1621,7 @@ SceneRoots:
   - {fileID: 659628901}
   - {fileID: 1917116490}
   - {fileID: 1459395016}
+  - {fileID: 167219249}
   - {fileID: 190157397}
   - {fileID: 2058071572}
   - {fileID: 1867437210}
