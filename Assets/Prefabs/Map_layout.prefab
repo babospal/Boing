@@ -324,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922101746109565877, guid: f26e63fc890a3af4dadfdf395cdeff58, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -390,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922101746109565877, guid: f26e63fc890a3af4dadfdf395cdeff58, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
