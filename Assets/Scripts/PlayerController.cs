@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public Rigidbody2D rigidbody;
     public Collider2D playerCollider;
+    public int enabledJumpCounter = 1;
     public float movementSpeed = 5;
     public float jumpForce = 100;
     public float xScale;
@@ -135,7 +136,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.Space) && isOnGround)
+        if (Input.GetKey(KeyCode.Space) && enabledJumpCounter > 0)
         {
             if (isNormalGravity)
             {
@@ -149,6 +150,7 @@ public class PlayerController : MonoBehaviour
                 rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, -jumpForce);
 
             }
+            enabledJumpCounter--;
             isOnGround = false;
         }
         
@@ -187,7 +189,21 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            isOnGround = true;
+            for (int i = 0; i < collision.contactCount; i++)
+            {
+                Vector2 normal = collision.GetContact(i).normal;
+
+                bool hitValidSurface = isNormalGravity
+                    ? normal.y > 0.5f
+                    : normal.y < -0.5f;
+
+                if (hitValidSurface)
+                {
+                    isOnGround = true;
+                    enabledJumpCounter = 1; // Reset back to standard 1 jump on landing
+                    break;
+                }
+            }
         }
 
         if (collision.gameObject.CompareTag("Zipline") && !isOnZipline)

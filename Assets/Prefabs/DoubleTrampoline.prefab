@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5329625058310827368}
   - component: {fileID: 4359138052917839979}
   - component: {fileID: 6884320937586047903}
-  - component: {fileID: 5659501421043040804}
+  - component: {fileID: -7796358053805209498}
   m_Layer: 0
   m_Name: DoubleTrampoline
   m_TagString: Untagged
@@ -140,7 +140,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.32060844, y: 0.25621784}
   m_EdgeRadius: 0
---- !u!114 &5659501421043040804
+--- !u!114 &-7796358053805209498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +149,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4771443513252955366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c980e016b7b5b94aa71d788816b3af8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bf24aea605464f4a8f70183431e0562, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Trampoline
+  m_EditorClassIdentifier: '::'
   bounceForce: 10
+  grantedJumps: 2
