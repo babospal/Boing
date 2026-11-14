@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 offset;
     private Camera mainCamera;
-
+    public Vector3 spawnPoint;
     void Start()
     {
         Instantiate(Canvas);
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         spawnedLarges = new List<GameObject>();
         spawnedLGs = new List<GameObject>();
         spawnedx2Jumps = new List<GameObject>();
-
+        spawnPoint = Camera.main.transform.position + new Vector3(1,1,1);
 
         mainCamera = Camera.main;
         xScale = gameObject.transform.localScale.x;
@@ -127,23 +127,23 @@ public class PlayerController : MonoBehaviour
 
                     if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") && spawnedLGs.Count < spawnableLGCount)
                     {
-                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection]);
+                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection],spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedLGs.Add(currentSpawnedTrampoline);
                     }
                     if (selectableTrampolines[selection].name.Contains("Trampoline") && spawnedNormals.Count < spawnableNormalTCount)
                     {
                         Debug.Log(spawnedNormals.Count);
-                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection]);
+                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint , Quaternion.Euler(0, 0, 0));
                         spawnedNormals.Add(currentSpawnedTrampoline);
                     }
                     if (selectableTrampolines[selection].name.Contains("BigTrampoline") && spawnedLarges.Count < spawnableLargeCount)
                     {
-                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection]);
+                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedLarges.Add(currentSpawnedTrampoline);
                     }
                     if (selectableTrampolines[selection].name.Contains("DoubleTrampoline") && spawnedx2Jumps.Count < spawnablex2JumpCount)
                     {
-                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection]);
+                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedx2Jumps.Add(currentSpawnedTrampoline);
                     }
 
