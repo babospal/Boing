@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1905782785185493911}
   - component: {fileID: 8773679124792327769}
   - component: {fileID: 6441906282456693394}
+  - component: {fileID: -5977960663874632841}
   m_Layer: 0
   m_Name: BigTrampoline
   m_TagString: Untagged
@@ -153,3 +154,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trampoline
   bounceForce: 12.5
+--- !u!114 &-5977960663874632841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767643310372434041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5c6142d5f64c143bb8735fd99ca482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Draggable
+  playerControllerScript: {fileID: 0}
