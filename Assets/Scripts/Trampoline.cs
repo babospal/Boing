@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Trampoline : MonoBehaviour
 {
+    public int available = 3;
     public float bounceForce = 15f;
     private void OnCollisionEnter2D(Collision2D collision)
     {
