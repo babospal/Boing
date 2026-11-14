@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e401b67ea172bc9429397e24db2c0e06
+guid: 14b2da7cff37794499c0f4cc495d491b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4429896766754324801
-    second: pupak_0
+      213: 8382717070696663976
+    second: spikes_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -98,30 +98,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pupak_0
+      name: spikes_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 142
-        height: 194
+        x: 10
+        y: 25
+        width: 44
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fbef4f97c58d582c0800000000000000
-      internalID: -4429896766754324801
+      spriteID: 8ab4a7323c4655470800000000000000
+      internalID: 8382717070696663976
       vertices: []
       indices: 
       edges: []
@@ -150,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pupak_0: -4429896766754324801
+      spikes_0: 8382717070696663976
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
