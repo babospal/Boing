@@ -1,10 +1,12 @@
 
+using System;
 using Unity.VectorGraphics;
 using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
     public PlayerController playerControllerScript;
+    public static GameObject selectedTrampoline;
     private Vector3 offset;
     private float zCoordinate;
     private void Start()
@@ -13,6 +15,7 @@ public class Draggable : MonoBehaviour
     }
     void OnMouseDown()
     {
+        selectedTrampoline = gameObject;
         zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
 
         offset = transform.position -
@@ -35,4 +38,5 @@ public class Draggable : MonoBehaviour
 
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
+    
 }
