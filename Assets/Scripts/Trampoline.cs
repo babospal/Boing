@@ -5,6 +5,7 @@ public class Trampoline : MonoBehaviour
     public float bounceForce = 15f;
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision);
         if (collision.gameObject.CompareTag("Player"))
         {
             if (collision.contacts[0].normal.y < -0.5f)
