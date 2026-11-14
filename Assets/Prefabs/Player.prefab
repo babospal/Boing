@@ -154,10 +154,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1a1850bd317914bb2754cce230f36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  spawnableNormalTCount: 2
+  spawnableLGCount: 3
+  spawnableLargeCount: 2
+  spawnablex2JumpCount: 2
+  spawnedNormals: []
+  spawnedLarges: []
+  spawnedLGs: []
+  spawnedx2Jumps: []
+  isOnGround: 1
   rigidbody: {fileID: 4428915765307476168}
-  spriteRenderer: {fileID: 0}
+  playerCollider: {fileID: 2636961860574049137}
   movementSpeed: 5
   jumpForce: 8
+  xScale: 0
+  defaultTrampoline: {fileID: 6246254684022975508, guid: 4c981bec92964af4f95e9a92c83acb0d, type: 3}
+  largeTrampoline: {fileID: 5767643310372434041, guid: f4169478195b2b24885cec80662468f7, type: 3}
+  lowGravTrampoline: {fileID: 1896205677753564006, guid: 7916e0bc8c950db41ac993e6fe4b870b, type: 3}
+  doubleJumpTrampoline: {fileID: 4771443513252955366, guid: 30fc87815fe70e04b99de1f37a8405d2, type: 3}
+  currentSpawnedTrampoline: {fileID: 0}
+  selection: 0
+  trampolineSelectorRenderer: {fileID: 7189618846718051106, guid: 2929a2159500f2342baaa93d8967a9ce, type: 3}
+  selectableTrampolines: []
+  isInPlacementMode: 0
+  remainingCounter: {fileID: 8276851237142602514, guid: c0b35561d1f004a49b7c3adeae370e7b, type: 3}
 --- !u!50 &4428915765307476168
 Rigidbody2D:
   serializedVersion: 5
