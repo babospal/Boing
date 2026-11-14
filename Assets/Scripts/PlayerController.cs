@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    bool gameOver = false;
     public Rigidbody2D rigidbody;
     public float movementSpeed = 5;
     public float jumpForce = 100;
@@ -20,8 +21,21 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, movementSpeed);
         }
+       
+
 
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        Debug.Log(collision);
+        if (collision.CompareTag("DeadlyObject"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+
 }
