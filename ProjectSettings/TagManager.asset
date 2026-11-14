@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - DeadlyObject
+  - Ground
+  - Zipline
   layers:
   - Default
   - TransparentFX
