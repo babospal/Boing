@@ -3,7 +3,9 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject currentSpawnedTrampoline;
     public int selection = 0;
-    public SpriteRenderer trampolineSelectorRenderer;
+    public Image trampolineSelectorRenderer;
 
     public List<GameObject> selectableTrampolines = new List<GameObject>();
     bool isNormalGravity = true;
@@ -43,7 +45,8 @@ public class PlayerController : MonoBehaviour
     bool isOnZipline = false;
     SpriteRenderer ziplineSr;
     public bool isInPlacementMode;
-
+    public Canvas Canvas;
+    public EventSystem eventSystem;
     public TextMeshProUGUI remainingCounter;
 
     private Vector3 offset;
@@ -51,6 +54,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Instantiate(Canvas);
+        Instantiate(eventSystem);
+        trampolineSelectorRenderer = GameObject.Find("trampolineChoiceRenderer2").GetComponent<Image>();
+        remainingCounter = GameObject.Find("RemainingCounter").GetComponent<TextMeshProUGUI>();
+        
         spawnedNormals = new List<GameObject>();
         spawnedLarges = new List<GameObject>();
         spawnedLGs = new List<GameObject>();
@@ -72,14 +80,15 @@ public class PlayerController : MonoBehaviour
 
         if (isInPlacementMode)
         {
+            trampolineSelectorRenderer.gameObject.SetActive(true);
+            remainingCounter.gameObject.SetActive(true);
             if (Draggable.selectedTrampoline is not null && Input.GetKey(KeyCode.R))
             {
                 Debug.Log("rotating");
                 Draggable.selectedTrampoline.transform.Rotate(new Vector3(0, 0, 0.3f));
             }
 
-            trampolineSelectorRenderer.gameObject.SetActive(true);
-            remainingCounter.gameObject.SetActive(true);
+            
             if (Input.GetKeyUp(KeyCode.RightArrow))
             {
 

@@ -165,6 +165,7 @@ MonoBehaviour:
   isOnGround: 1
   rigidbody: {fileID: 4428915765307476168}
   playerCollider: {fileID: 2636961860574049137}
+  enabledJumpCounter: 1
   movementSpeed: 5
   jumpForce: 8
   xScale: 0
@@ -174,10 +175,12 @@ MonoBehaviour:
   doubleJumpTrampoline: {fileID: 4771443513252955366, guid: 30fc87815fe70e04b99de1f37a8405d2, type: 3}
   currentSpawnedTrampoline: {fileID: 0}
   selection: 0
-  trampolineSelectorRenderer: {fileID: 7189618846718051106, guid: 2929a2159500f2342baaa93d8967a9ce, type: 3}
+  trampolineSelectorRenderer: {fileID: 0}
   selectableTrampolines: []
   isInPlacementMode: 0
-  remainingCounter: {fileID: 8276851237142602514, guid: c0b35561d1f004a49b7c3adeae370e7b, type: 3}
+  Canvas: {fileID: 1103726387198637615, guid: 281663b847f0dea4899bd763e4dc58da, type: 3}
+  eventSystem: {fileID: 6257872478304468606, guid: 388069076b4dbf1428c2a9a6ced07fa9, type: 3}
+  remainingCounter: {fileID: 0}
 --- !u!50 &4428915765307476168
 Rigidbody2D:
   serializedVersion: 5
