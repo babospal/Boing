@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5977960663874632841}
   - component: {fileID: -571581203962988312}
   m_Layer: 0
-  m_Name: BigTrampoline
+  m_Name: bigtrampoline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
