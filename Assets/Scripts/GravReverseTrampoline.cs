@@ -3,6 +3,9 @@ using UnityEngine;
 public class GravityTrampoline : MonoBehaviour
 {
     public float bounceForce = 12f;
+    [Header("Audio")]
+    public AudioClip bounceSound;
+    public AudioSource audioSource;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,6 +31,10 @@ public class GravityTrampoline : MonoBehaviour
                     // Launch toward the opposite surface
                     float launchDirection = isNormalGravity ? bounceForce : -bounceForce;
                     playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, launchDirection);
+                    if (audioSource != null && bounceSound != null)
+                    {
+                        audioSource.PlayOneShot(bounceSound);
+                    }
                 }
             }
         }

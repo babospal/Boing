@@ -1,19 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+[RequireComponent(typeof(AudioSource))]
 
 public class PlayerController : MonoBehaviour
 {
-    public int spawnableNormalTCount = 2;
-    public int spawnableLGCount = 3;
-    public int spawnableLargeCount = 2;
-    public int spawnablex2JumpCount = 2;
+    public SpawnLimitsManager spawnLimitsManagerScript;
 
     public List<GameObject> spawnedNormals;
     public List<GameObject> spawnedLarges;
@@ -21,7 +19,11 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> spawnedx2Jumps;
 
 
-
+    [Header("Audio")]
+    public AudioClip deathSound;
+    public AudioClip ziplineSound;
+    [Range(0f, 1f)] public float volume = 1f;
+    private AudioSource audioSource;
 
     bool gameOver = false;
     public bool isOnGround = true;
@@ -53,16 +55,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 offset;
     private Camera mainCamera;
     public Vector3 spawnPoint;
-    public SpriteRenderer spriteRenderer;
-    public Sprite defa;
-    public Sprite fly;
-    public Sprite zipline;
-    public Sprite[] walkSprites;
-    public float animationSpeed = 0.15f;
-    private Coroutine walkCoroutine;
-
     void Start()
     {
+        spawnLimitsManagerScript = gameObject.GetComponent<SpawnLimitsManager>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         Instantiate(Canvas);
         Instantiate(eventSystem);
         trampolineSelectorRenderer = GameObject.Find("trampolineChoiceRenderer2").GetComponent<Image>();
@@ -80,7 +77,7 @@ public class PlayerController : MonoBehaviour
         selectableTrampolines.Add(lowGravTrampoline);
         selectableTrampolines.Add(largeTrampoline);
         selectableTrampolines.Add(doubleJumpTrampoline);
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -114,43 +111,43 @@ public class PlayerController : MonoBehaviour
 
                 if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") )
                 {
-                    remainingCounter.text = $"{spawnableLGCount - spawnedLGs.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnableLGCount - spawnedLGs.Count}";
                 }
                 if (selectableTrampolines[selection].name.Contains("Trampoline") )
                 {
-                    remainingCounter.text = $"{spawnableNormalTCount - spawnedNormals.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnableNormalTCount - spawnedNormals.Count}";
 
                 }
                 if (selectableTrampolines[selection].name.Contains("BigTrampoline") )
                 {
-                    remainingCounter.text = $"{spawnableLargeCount - spawnedLarges.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnableLargeCount - spawnedLarges.Count}";
 
                 }
                 if (selectableTrampolines[selection].name.Contains("DoubleTrampoline") )
                 {
-                    remainingCounter.text = $"{spawnablex2JumpCount - spawnedx2Jumps.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnablex2JumpCount - spawnedx2Jumps.Count}";
 
                 }
                 if (Input.GetKeyUp(KeyCode.B))
                 {
 
-                    if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") && spawnedLGs.Count < spawnableLGCount)
+                    if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") && spawnedLGs.Count < spawnLimitsManagerScript.spawnableLGCount)
                     {
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection],spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedLGs.Add(currentSpawnedTrampoline);
                     }
-                    if (selectableTrampolines[selection].name.Contains("Trampoline") && spawnedNormals.Count < spawnableNormalTCount)
+                    if (selectableTrampolines[selection].name.Contains("Trampoline") && spawnedNormals.Count < spawnLimitsManagerScript.spawnableNormalTCount)
                     {
                         Debug.Log(spawnedNormals.Count);
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint , Quaternion.Euler(0, 0, 0));
                         spawnedNormals.Add(currentSpawnedTrampoline);
                     }
-                    if (selectableTrampolines[selection].name.Contains("BigTrampoline") && spawnedLarges.Count < spawnableLargeCount)
+                    if (selectableTrampolines[selection].name.Contains("BigTrampoline") && spawnedLarges.Count < spawnLimitsManagerScript.spawnableLargeCount)
                     {
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedLarges.Add(currentSpawnedTrampoline);
                     }
-                    if (selectableTrampolines[selection].name.Contains("DoubleTrampoline") && spawnedx2Jumps.Count < spawnablex2JumpCount)
+                    if (selectableTrampolines[selection].name.Contains("DoubleTrampoline") && spawnedx2Jumps.Count < spawnLimitsManagerScript.spawnablex2JumpCount)
                     {
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedx2Jumps.Add(currentSpawnedTrampoline);
@@ -203,36 +200,8 @@ public class PlayerController : MonoBehaviour
 
         }
         rigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * movementSpeed, rigidbody.linearVelocity.y);
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        Debug.Log("Horizontal: " + horizontal + " | Grounded: " + isOnGround);
-        if (horizontal < 0)
+        if (Input.GetAxis("Horizontal") < 0)
         {
-            bool isMoving = horizontal != 0;
-
-            if (isOnGround && isMoving)
-            {
-                if (walkCoroutine == null)
-                {
-                    walkCoroutine = StartCoroutine(WalkAnimation());
-                }
-            }
-            else
-            {
-                if (walkCoroutine != null)
-                {
-                    StopCoroutine(walkCoroutine);
-                    walkCoroutine = null;
-                }
-
-                if (!isOnGround)
-                {
-                    spriteRenderer.sprite = fly;
-                }
-                else
-                {
-                    spriteRenderer.sprite = walkSprites[0];
-                }
-            }
             if (isNormalGravity)
             {
                 this.gameObject.transform.localScale = new Vector3(-xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
@@ -275,7 +244,6 @@ public class PlayerController : MonoBehaviour
             }
             enabledJumpCounter--;
             isOnGround = false;
-            spriteRenderer.sprite = fly;
         }
 
 
@@ -295,7 +263,6 @@ public class PlayerController : MonoBehaviour
             {
                 rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 isOnZipline = false;
-                spriteRenderer.sprite = fly;
             }
         }
     }
@@ -304,8 +271,9 @@ public class PlayerController : MonoBehaviour
     {
 
         //Debug.Log(collision);
-        if (collision.CompareTag("DeadlyObject"))
+        if (collision.CompareTag("DeadlyObject") && deathSound != null)
         {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, volume);
             Destroy(this.gameObject);
         }
     }
@@ -326,7 +294,6 @@ public class PlayerController : MonoBehaviour
                 {
                     isOnGround = true;
                     enabledJumpCounter = 1; // Reset back to standard 1 jump on landing
-                    spriteRenderer.sprite = defa;
                     break;
                 }
             }
@@ -338,25 +305,14 @@ public class PlayerController : MonoBehaviour
             ziplineSr = collision.gameObject.GetComponent<SpriteRenderer>();
             rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             isOnZipline = true;
-            spriteRenderer.sprite = zipline;
+            if (ziplineSound != null)
+            {
+                audioSource.clip = ziplineSound;
+                audioSource.volume = volume;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
-    }
-
-    IEnumerator WalkAnimation()
-    {
-        int frame = 0;
-
-        while (Input.GetAxisRaw("Horizontal") != 0)
-        {
-            spriteRenderer.sprite = walkSprites[frame];
-
-            frame = (frame + 1) % walkSprites.Length;
-
-            yield return new WaitForSeconds(animationSpeed);
-        }
-
-        walkCoroutine = null;
-        spriteRenderer.sprite = walkSprites[0];
     }
 
 

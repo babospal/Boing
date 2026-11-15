@@ -128,46 +128,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: fly
-      value: 
-      objectReference: {fileID: 3946817490736737358, guid: 08fb34de951c5104784cb6971c082467, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: dead
-      value: 
-      objectReference: {fileID: 3239938992585581152, guid: 2feec5db603ad5141bab327225d346e4, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: defa
-      value: 
-      objectReference: {fileID: 7707814483816742852, guid: 95c2efaf9eb1aee48af1b88d77ccb46b, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: zipline
-      value: 
-      objectReference: {fileID: -3675950833552899580, guid: 3101d2e2d14b405478dd37de31310f23, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: spriteRenderer
-      value: 
-      objectReference: {fileID: 1700429448}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: walkSprites.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: 'walkSprites.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7707814483816742852, guid: 95c2efaf9eb1aee48af1b88d77ccb46b, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: 'walkSprites.Array.data[1]'
-      value: 
-      objectReference: {fileID: 395137522011849705, guid: ab042aaa4061e3546b4eccd22615b6fe, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: 'walkSprites.Array.data[2]'
-      value: 
-      objectReference: {fileID: 7707814483816742852, guid: 95c2efaf9eb1aee48af1b88d77ccb46b, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-      propertyPath: 'walkSprites.Array.data[3]'
-      value: 
-      objectReference: {fileID: -5151747403920194702, guid: d8390927adf68ba4db3d2ed9a96383bc, type: 3}
-    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
       propertyPath: trampolineSelectorRenderer
       value: 
       objectReference: {fileID: 0}
@@ -443,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigTrampoline (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6441906282456693394, guid: f4169478195b2b24885cec80662468f7, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2073391854}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -513,6 +477,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1829463366672931048, guid: 4c981bec92964af4f95e9a92c83acb0d, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2073391854}
     - target: {fileID: 2642106336667138368, guid: 4c981bec92964af4f95e9a92c83acb0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -619,10 +587,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c981bec92964af4f95e9a92c83acb0d, type: 3}
---- !u!212 &1700429448 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 8076374961532208130, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
-  m_PrefabInstance: {fileID: 378817491}
+--- !u!82 &2073391854 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8264000569584946868, guid: 3279c3cd20326a24d8b9e238f0a0bfcb, type: 3}
+  m_PrefabInstance: {fileID: 4694824441254097691}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &221245447162119758
 PrefabInstance:
@@ -676,6 +644,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8261231575971402167, guid: 7916e0bc8c950db41ac993e6fe4b870b, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2073391854}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

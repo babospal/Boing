@@ -3,7 +3,10 @@ using UnityEngine;
 public class DoubleJumpTrampoline : MonoBehaviour
 {
     public float bounceForce = 15f;
-    public int grantedJumps = 1; // Gives 2 mid-air jumps (or set to 1 for a single extra air-jump)
+    public int grantedJumps = 1;
+    [Header("Audio")]
+    public AudioClip bounceSound;
+    public AudioSource audioSource;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,6 +26,10 @@ public class DoubleJumpTrampoline : MonoBehaviour
 
                     // Grant double-jump charges
                     player.enabledJumpCounter = grantedJumps;
+                    if (audioSource != null && bounceSound != null)
+                    {
+                        audioSource.PlayOneShot(bounceSound);
+                    }
                 }
             }
         }
