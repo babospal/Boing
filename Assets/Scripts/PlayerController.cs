@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -111,11 +110,7 @@ public class PlayerController : MonoBehaviour
 
                 selection++;
             }
-            //else if (Input.GetKeyUp(KeyCode.RightArrow))
-            //{
-            //    selection--;
-
-            //}
+          
             if (selection != selectableTrampolines.Count)
             {
                 trampolineSelectorRenderer.sprite = selectableTrampolines[selection].GetComponent<SpriteRenderer>().sprite;
@@ -170,11 +165,7 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
-            //if (currentSpawnedTrampoline is not null && Input.GetKey(KeyCode.R))
-            //{
-            //    currentSpawnedTrampoline.transform.Rotate(new Vector3(0, 0, 0.3f));
-            //}
-
+         
             else
             {
                 selection = 0;
@@ -289,25 +280,20 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("DeadlyObject"))
         {
-            // Play the sound at the player's position
             AudioSource.PlayClipAtPoint(deathSound, transform.position, volume);
 
-            // Hide or disable the player so it looks dead immediately
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
-            rigidbody.simulated = false; // Stop physics interactions
+            rigidbody.simulated = false; 
 
-            // Start a coroutine to reload the scene after a short delay
-            StartCoroutine(ReloadSceneAfterDelay(1f)); // 1 second delay (adjust as needed based on sound length)
+            StartCoroutine(ReloadSceneAfterDelay(1f)); 
         }
     }
 
     private System.Collections.IEnumerator ReloadSceneAfterDelay(float delay)
     {
-        // Wait for the specified amount of seconds (realtime ensures it works even if timeScale is 0)
         yield return new WaitForSecondsRealtime(delay);
 
-        // Now reload the scene
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -326,7 +312,7 @@ public class PlayerController : MonoBehaviour
                 if (hitValidSurface)
                 {
                     isOnGround = true;
-                    enabledJumpCounter = 1; // Reset back to standard 1 jump on landing
+                    enabledJumpCounter = 1; 
                     spriteRenderer.sprite = defa;
                     break;
                 }

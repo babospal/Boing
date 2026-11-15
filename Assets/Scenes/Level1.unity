@@ -603,7 +603,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254896649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -634,13 +634,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Place trampolines from your inventory
+  m_text: 'Place trampolines from your inventory to get to the finish!
+
+    You can only enter placement mode once!
 
     Pro tip: don''t touch the spikes or the lava
 
     Controls:
 
     -Placement mode: E
+
+
+    in placement mode:
 
     -Switch between trampolines: right arrow
 
@@ -1116,7 +1121,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 688188193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1609,7 +1614,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1685082016}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1620,8 +1625,8 @@ Canvas:
   m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1285073837
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!224 &1515313418
 RectTransform:
@@ -1705,6 +1710,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2af705c1001dc0741aeb3b3c24f846fc, type: 3}
+--- !u!20 &1685082016 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5354847128432932118, guid: 3279c3cd20326a24d8b9e238f0a0bfcb, type: 3}
+  m_PrefabInstance: {fileID: 88986270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1911201116
 PrefabInstance:
   m_ObjectHideFlags: 0
