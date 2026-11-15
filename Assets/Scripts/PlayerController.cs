@@ -63,9 +63,6 @@ public class PlayerController : MonoBehaviour
     public Sprite defa;
     public Sprite fly;
     public Sprite zipline;
-    public Sprite[] walkSprites;
-    public float animationSpeed = 0.15f;
-    private Coroutine walkCoroutine;
     void Start()
     {
         PhysicsMaterial2D noFriction = new PhysicsMaterial2D("No Friction") { friction = 0f, bounciness = 0f };
@@ -217,31 +214,6 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0)
         {
-            bool isMoving = horizontal != 0;
-
-            if (isOnGround && isMoving)
-            {
-                if (walkCoroutine == null)
-                {
-                    walkCoroutine = StartCoroutine(WalkAnimation());
-                }
-            }
-            else
-            {
-                if (walkCoroutine != null)
-                {
-                    StopCoroutine(walkCoroutine);
-                    walkCoroutine = null;
-                }
-
-                if (!isOnGround)
-                {
-                    spriteRenderer.sprite = fly;
-                }
-                else
-                {
-                    spriteRenderer.sprite = walkSprites[0];
-                }
                 if (isNormalGravity)
                 {
                     this.gameObject.transform.localScale = new Vector3(-xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
@@ -252,7 +224,6 @@ public class PlayerController : MonoBehaviour
                     this.gameObject.transform.localScale = new Vector3(xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
                 }
-            }
         }
         else
         {
@@ -375,23 +346,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    IEnumerator WalkAnimation()
-    {
-        int frame = 0;
-
-        while (Input.GetAxisRaw("Horizontal") != 0)
-        {
-            spriteRenderer.sprite = walkSprites[frame];
-
-            frame = (frame + 1) % walkSprites.Length;
-
-            yield return new WaitForSeconds(animationSpeed);
-        }
-
-        walkCoroutine = null;
-        spriteRenderer.sprite = walkSprites[0];
-    }
-
-
-
 }
