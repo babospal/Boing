@@ -76,12 +76,12 @@ public class PlayerController : MonoBehaviour
         Instantiate(eventSystem);
         trampolineSelectorRenderer = GameObject.Find("trampolineChoiceRenderer2").GetComponent<Image>();
         remainingCounter = GameObject.Find("RemainingCounter").GetComponent<TextMeshProUGUI>();
-        
+
         spawnedNormals = new List<GameObject>();
         spawnedLarges = new List<GameObject>();
         spawnedLGs = new List<GameObject>();
         spawnedx2Jumps = new List<GameObject>();
-        spawnPoint = Camera.main.transform.position + new Vector3(1,1,1);
+        spawnPoint = Camera.main.transform.position + new Vector3(1, 1, 1);
 
         mainCamera = Camera.main;
         xScale = gameObject.transform.localScale.x;
@@ -94,43 +94,47 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            SceneManager.LoadSceneAsync("MainMenu");
+        }
         if (isInPlacementMode)
         {
-            
+
             trampolineSelectorRenderer.gameObject.SetActive(true);
+            remainingCounter.gameObject.SetActive(true);
             remainingCounter.gameObject.SetActive(true);
             if (Draggable.selectedTrampoline != null && Input.GetKey(KeyCode.R))
             {
-                  Draggable.selectedTrampoline.transform.Rotate(new Vector3(0, 0, 0.3f));
+                Draggable.selectedTrampoline.transform.Rotate(new Vector3(0, 0, 3f));
             }
 
-            
+
             if (Input.GetKeyUp(KeyCode.RightArrow))
             {
 
                 selection++;
             }
-          
+
             if (selection != selectableTrampolines.Count)
             {
                 trampolineSelectorRenderer.sprite = selectableTrampolines[selection].GetComponent<SpriteRenderer>().sprite;
 
-                if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") )
+                if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse"))
                 {
                     remainingCounter.text = $"{spawnLimitsManagerScript.spawnableLGCount - spawnedLGs.Count}";
                 }
-                if (selectableTrampolines[selection].name.Contains("Trampoline") )
+                if (selectableTrampolines[selection].name.Contains("Trampoline"))
                 {
                     remainingCounter.text = $"{spawnLimitsManagerScript.spawnableNormalTCount - spawnedNormals.Count}";
 
                 }
-                if (selectableTrampolines[selection].name.Contains("bigtrampoline") )
+                if (selectableTrampolines[selection].name.Contains("bigtrampoline"))
                 {
                     remainingCounter.text = $"{spawnLimitsManagerScript.spawnableLargeCount - spawnedLarges.Count}";
 
                 }
-                if (selectableTrampolines[selection].name.Contains("doubletrampoline") )
+                if (selectableTrampolines[selection].name.Contains("doubletrampoline"))
                 {
                     remainingCounter.text = $"{spawnLimitsManagerScript.spawnablex2JumpCount - spawnedx2Jumps.Count}";
 
@@ -140,13 +144,13 @@ public class PlayerController : MonoBehaviour
 
                     if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") && spawnedLGs.Count < spawnLimitsManagerScript.spawnableLGCount)
                     {
-                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection],spawnPoint, Quaternion.Euler(0, 0, 0));
+                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedLGs.Add(currentSpawnedTrampoline);
                     }
                     if (selectableTrampolines[selection].name.Contains("Trampoline") && spawnedNormals.Count < spawnLimitsManagerScript.spawnableNormalTCount)
                     {
                         Debug.Log(spawnedNormals.Count);
-                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint , Quaternion.Euler(0, 0, 0));
+                        currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedNormals.Add(currentSpawnedTrampoline);
                     }
                     if (selectableTrampolines[selection].name.Contains("bigtrampoline") && spawnedLarges.Count < spawnLimitsManagerScript.spawnableLargeCount)
@@ -160,20 +164,20 @@ public class PlayerController : MonoBehaviour
                         spawnedx2Jumps.Add(currentSpawnedTrampoline);
                     }
 
-                    
+
 
 
                 }
 
             }
-         
+
             else
             {
                 selection = 0;
             }
 
         }
-        else 
+        else
         {
             trampolineSelectorRenderer.gameObject.SetActive(false);
             remainingCounter.gameObject.SetActive(false);
@@ -190,18 +194,18 @@ public class PlayerController : MonoBehaviour
             isNormalGravity = true;
         }
 
-        if (isNormalGravity )
+        if (isNormalGravity)
         {
             gameObject.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y, 0);
 
         }
-        else 
+        else
         {
             gameObject.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y, 180);
 
 
         }
-        if(!isInPlacementMode)
+        if (!isInPlacementMode)
         {
             rigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * movementSpeed, rigidbody.linearVelocity.y);
 
@@ -209,16 +213,16 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0)
         {
-                if (isNormalGravity && !isInPlacementMode)
-                {
-                    this.gameObject.transform.localScale = new Vector3(-xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            if (isNormalGravity && !isInPlacementMode)
+            {
+                this.gameObject.transform.localScale = new Vector3(-xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
-                }
-                else if(!isNormalGravity &&  !isInPlacementMode)
-                {
-                    this.gameObject.transform.localScale = new Vector3(xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            }
+            else if (!isNormalGravity && !isInPlacementMode)
+            {
+                this.gameObject.transform.localScale = new Vector3(xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
-                }
+            }
         }
         else
         {
@@ -275,7 +279,8 @@ public class PlayerController : MonoBehaviour
                 audioSource.Stop();
             }
         }
-    }
+
+    } 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -285,9 +290,9 @@ public class PlayerController : MonoBehaviour
 
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
-            rigidbody.simulated = false; 
+            rigidbody.simulated = false;
 
-            StartCoroutine(ReloadSceneAfterDelay(1f)); 
+            StartCoroutine(ReloadSceneAfterDelay(1f));
         }
     }
 

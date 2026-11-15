@@ -20,15 +20,12 @@ public class GravityTrampoline : MonoBehaviour
 
             if (playerRb != null)
             {
-                bool isNormalGravity = playerRb.gravityScale > 0f;
+                float hitAlignment = Vector2.Dot(collision.contacts[0].normal, -transform.up);
 
-            
-                bool validHit = isNormalGravity
-                    ? collision.contacts[0].normal.y < -0.5f
-                    : collision.contacts[0].normal.y > 0.5f;
 
-                if (validHit)
+                if (hitAlignment > 0.5f)
                 {
+                    bool isNormalGravity = playerRb.gravityScale > 0f;
                     playerRb.gravityScale *= -1f;
 
                     float launchDirection = isNormalGravity ? bounceForce : -bounceForce;
