@@ -880,6 +880,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: fly
+      value: 
+      objectReference: {fileID: 3946817490736737358, guid: 08fb34de951c5104784cb6971c082467, type: 3}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: dead
+      value: 
+      objectReference: {fileID: 3239938992585581152, guid: 2feec5db603ad5141bab327225d346e4, type: 3}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: defa
+      value: 
+      objectReference: {fileID: 7707814483816742852, guid: 95c2efaf9eb1aee48af1b88d77ccb46b, type: 3}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: zipline
+      value: 
+      objectReference: {fileID: -3675950833552899580, guid: 3101d2e2d14b405478dd37de31310f23, type: 3}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 509050782}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: walkSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: 'walkSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7707814483816742852, guid: 95c2efaf9eb1aee48af1b88d77ccb46b, type: 3}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: 'walkSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 395137522011849705, guid: ab042aaa4061e3546b4eccd22615b6fe, type: 3}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: 'walkSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7707814483816742852, guid: 95c2efaf9eb1aee48af1b88d77ccb46b, type: 3}
+    - target: {fileID: 1290389704046159922, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+      propertyPath: 'walkSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: -5151747403920194702, guid: d8390927adf68ba4db3d2ed9a96383bc, type: 3}
     - target: {fileID: 1559364410625024061, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.12
@@ -929,6 +969,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+--- !u!212 &509050782 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8076374961532208130, guid: 1ac03393c3d3f54418dbaff174b98720, type: 3}
+  m_PrefabInstance: {fileID: 509050781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &543127268
 PrefabInstance:
   m_ObjectHideFlags: 0
