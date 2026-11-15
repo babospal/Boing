@@ -9,10 +9,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public int spawnableNormalTCount = 2;
-    public int spawnableLGCount = 3;
-    public int spawnableLargeCount = 2;
-    public int spawnablex2JumpCount = 2;
+    public SpawnLimitsManager spawnLimitsManagerScript;
 
     public List<GameObject> spawnedNormals;
     public List<GameObject> spawnedLarges;
@@ -54,6 +51,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 spawnPoint;
     void Start()
     {
+        spawnLimitsManagerScript = gameObject.GetComponent<SpawnLimitsManager>();
         Instantiate(Canvas);
         Instantiate(eventSystem);
         trampolineSelectorRenderer = GameObject.Find("trampolineChoiceRenderer2").GetComponent<Image>();
@@ -105,43 +103,43 @@ public class PlayerController : MonoBehaviour
 
                 if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") )
                 {
-                    remainingCounter.text = $"{spawnableLGCount - spawnedLGs.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnableLGCount - spawnedLGs.Count}";
                 }
                 if (selectableTrampolines[selection].name.Contains("Trampoline") )
                 {
-                    remainingCounter.text = $"{spawnableNormalTCount - spawnedNormals.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnableNormalTCount - spawnedNormals.Count}";
 
                 }
                 if (selectableTrampolines[selection].name.Contains("BigTrampoline") )
                 {
-                    remainingCounter.text = $"{spawnableLargeCount - spawnedLarges.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnableLargeCount - spawnedLarges.Count}";
 
                 }
                 if (selectableTrampolines[selection].name.Contains("DoubleTrampoline") )
                 {
-                    remainingCounter.text = $"{spawnablex2JumpCount - spawnedx2Jumps.Count}";
+                    remainingCounter.text = $"{spawnLimitsManagerScript.spawnablex2JumpCount - spawnedx2Jumps.Count}";
 
                 }
                 if (Input.GetKeyUp(KeyCode.B))
                 {
 
-                    if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") && spawnedLGs.Count < spawnableLGCount)
+                    if (selectableTrampolines[selection].name.Contains("trampoline_grav_reverse") && spawnedLGs.Count < spawnLimitsManagerScript.spawnableLGCount)
                     {
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection],spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedLGs.Add(currentSpawnedTrampoline);
                     }
-                    if (selectableTrampolines[selection].name.Contains("Trampoline") && spawnedNormals.Count < spawnableNormalTCount)
+                    if (selectableTrampolines[selection].name.Contains("Trampoline") && spawnedNormals.Count < spawnLimitsManagerScript.spawnableNormalTCount)
                     {
                         Debug.Log(spawnedNormals.Count);
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint , Quaternion.Euler(0, 0, 0));
                         spawnedNormals.Add(currentSpawnedTrampoline);
                     }
-                    if (selectableTrampolines[selection].name.Contains("BigTrampoline") && spawnedLarges.Count < spawnableLargeCount)
+                    if (selectableTrampolines[selection].name.Contains("BigTrampoline") && spawnedLarges.Count < spawnLimitsManagerScript.spawnableLargeCount)
                     {
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedLarges.Add(currentSpawnedTrampoline);
                     }
-                    if (selectableTrampolines[selection].name.Contains("DoubleTrampoline") && spawnedx2Jumps.Count < spawnablex2JumpCount)
+                    if (selectableTrampolines[selection].name.Contains("DoubleTrampoline") && spawnedx2Jumps.Count < spawnLimitsManagerScript.spawnablex2JumpCount)
                     {
                         currentSpawnedTrampoline = Instantiate(selectableTrampolines[selection], spawnPoint, Quaternion.Euler(0, 0, 0));
                         spawnedx2Jumps.Add(currentSpawnedTrampoline);
