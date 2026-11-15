@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             if (Draggable.selectedTrampoline is not null && Input.GetKey(KeyCode.R))
             {
                 Debug.Log("rotating");
-                Draggable.selectedTrampoline.transform.Rotate(new Vector3(0, 0, 0.3f *Time.deltaTime));
+                Draggable.selectedTrampoline.transform.Rotate(new Vector3(0, 0, 1f));
             }
 
             
