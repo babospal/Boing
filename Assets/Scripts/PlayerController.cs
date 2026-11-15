@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -55,6 +56,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 offset;
     private Camera mainCamera;
     public Vector3 spawnPoint;
+    public SpriteRenderer spriteRenderer;
+    public Sprite defa;
+    public Sprite fly;
+    public Sprite zipline;
+    public Sprite[] walkSprites;
+    public float animationSpeed = 0.15f;
+    private Coroutine walkCoroutine;
     void Start()
     {
         spawnLimitsManagerScript = gameObject.GetComponent<SpawnLimitsManager>();
@@ -77,7 +85,7 @@ public class PlayerController : MonoBehaviour
         selectableTrampolines.Add(lowGravTrampoline);
         selectableTrampolines.Add(largeTrampoline);
         selectableTrampolines.Add(doubleJumpTrampoline);
-        
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -200,17 +208,44 @@ public class PlayerController : MonoBehaviour
 
         }
         rigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * movementSpeed, rigidbody.linearVelocity.y);
-        if (Input.GetAxis("Horizontal") < 0)
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        if (horizontal < 0)
         {
-            if (isNormalGravity)
-            {
-                this.gameObject.transform.localScale = new Vector3(-xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            bool isMoving = horizontal != 0;
 
+            if (isOnGround && isMoving)
+            {
+                if (walkCoroutine == null)
+                {
+                    walkCoroutine = StartCoroutine(WalkAnimation());
+                }
             }
             else
             {
-                this.gameObject.transform.localScale = new Vector3(xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+                if (walkCoroutine != null)
+                {
+                    StopCoroutine(walkCoroutine);
+                    walkCoroutine = null;
+                }
 
+                if (!isOnGround)
+                {
+                    spriteRenderer.sprite = fly;
+                }
+                else
+                {
+                    spriteRenderer.sprite = walkSprites[0];
+                }
+                if (isNormalGravity)
+                {
+                    this.gameObject.transform.localScale = new Vector3(-xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+
+                }
+                else
+                {
+                    this.gameObject.transform.localScale = new Vector3(xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+
+                }
             }
         }
         else
@@ -244,6 +279,7 @@ public class PlayerController : MonoBehaviour
             }
             enabledJumpCounter--;
             isOnGround = false;
+            spriteRenderer.sprite = fly;
         }
 
 
@@ -263,6 +299,7 @@ public class PlayerController : MonoBehaviour
             {
                 rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 isOnZipline = false;
+                spriteRenderer.sprite = fly;
             }
         }
     }
@@ -294,6 +331,7 @@ public class PlayerController : MonoBehaviour
                 {
                     isOnGround = true;
                     enabledJumpCounter = 1; // Reset back to standard 1 jump on landing
+                    spriteRenderer.sprite = defa;
                     break;
                 }
             }
@@ -305,6 +343,7 @@ public class PlayerController : MonoBehaviour
             ziplineSr = collision.gameObject.GetComponent<SpriteRenderer>();
             rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             isOnZipline = true;
+            spriteRenderer.sprite = zipline;
             if (ziplineSound != null)
             {
                 audioSource.clip = ziplineSound;
@@ -313,6 +352,22 @@ public class PlayerController : MonoBehaviour
                 audioSource.Play();
             }
         }
+    }
+    IEnumerator WalkAnimation()
+    {
+        int frame = 0;
+
+        while (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            spriteRenderer.sprite = walkSprites[frame];
+
+            frame = (frame + 1) % walkSprites.Length;
+
+            yield return new WaitForSeconds(animationSpeed);
+        }
+
+        walkCoroutine = null;
+        spriteRenderer.sprite = walkSprites[0];
     }
 
 
