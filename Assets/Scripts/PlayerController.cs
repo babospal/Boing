@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+[RequireComponent(typeof(AudioSource))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,8 +19,13 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> spawnedx2Jumps;
 
 
+    [Header("Audio")]
+    public AudioClip deathSound;
+    public AudioClip ziplineSound;
+    [Range(0f, 1f)] public float volume = 1f;
+    private AudioSource audioSource;
 
-    public bool gameOver = false;
+    bool gameOver = false;
     public bool isOnGround = true;
     public Rigidbody2D rigidbody;
     public Collider2D playerCollider;
@@ -36,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public GameObject currentSpawnedTrampoline;
     public int selection = 0;
     public Image trampolineSelectorRenderer;
+
     public List<GameObject> selectableTrampolines = new List<GameObject>();
     bool isNormalGravity = true;
     private Vector2 velocity = Vector2.zero;
@@ -51,8 +57,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 spawnPoint;
     void Start()
     {
-      
         spawnLimitsManagerScript = gameObject.GetComponent<SpawnLimitsManager>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         Instantiate(Canvas);
         Instantiate(eventSystem);
         trampolineSelectorRenderer = GameObject.Find("trampolineChoiceRenderer2").GetComponent<Image>();
@@ -70,12 +77,13 @@ public class PlayerController : MonoBehaviour
         selectableTrampolines.Add(lowGravTrampoline);
         selectableTrampolines.Add(largeTrampoline);
         selectableTrampolines.Add(doubleJumpTrampoline);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
         if (isInPlacementMode)
         {
             trampolineSelectorRenderer.gameObject.SetActive(true);
@@ -257,17 +265,16 @@ public class PlayerController : MonoBehaviour
                 isOnZipline = false;
             }
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         //Debug.Log(collision);
-        if (collision.CompareTag("DeadlyObject"))
+        if (collision.CompareTag("DeadlyObject") && deathSound != null)
         {
-            gameOver = true;
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, volume);
+            Destroy(this.gameObject);
         }
     }
 
@@ -298,7 +305,13 @@ public class PlayerController : MonoBehaviour
             ziplineSr = collision.gameObject.GetComponent<SpriteRenderer>();
             rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             isOnZipline = true;
-            
+            if (ziplineSound != null)
+            {
+                audioSource.clip = ziplineSound;
+                audioSource.volume = volume;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
     }
 
