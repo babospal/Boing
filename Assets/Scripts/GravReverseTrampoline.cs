@@ -6,10 +6,15 @@ public class GravityTrampoline : MonoBehaviour
     [Header("Audio")]
     public AudioClip bounceSound;
     public AudioSource audioSource;
+    public PlayerController playerControllerScript;
+    private void Start()
+    {
+    playerControllerScript= GameObject.Find("Player").GetComponent<PlayerController>();
 
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !playerControllerScript.isInPlacementMode)
         {
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
 

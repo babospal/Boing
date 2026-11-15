@@ -7,10 +7,15 @@ public class DoubleJumpTrampoline : MonoBehaviour
     [Header("Audio")]
     public AudioClip bounceSound;
     public AudioSource audioSource;
+    public PlayerController playerControllerScript;
+    private void Start()
+    {
+    playerControllerScript= GameObject.Find("Player").GetComponent<PlayerController>();
 
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !playerControllerScript.isInPlacementMode)
         {
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
@@ -21,10 +26,8 @@ public class DoubleJumpTrampoline : MonoBehaviour
 
                 if (Vector2.Dot(collision.GetContact(0).normal, bounceDirection) < -0.1f)
                 {
-                    // Launch the player in the direction the trampoline faces
                     playerRb.linearVelocity = bounceDirection * bounceForce;
 
-                    // Grant double-jump charges
                     player.enabledJumpCounter = grantedJumps;
                     if (audioSource != null && bounceSound != null)
                     {
