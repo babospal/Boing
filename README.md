@@ -17,4 +17,21 @@ You have to solve puzzles by strategically placing trampolines to bounce your wa
 - 4 different trampolines
 ---
 
+## Keybinds
+- A-D -> move left-right
+- Space -> jump
+- E -> Placement mode
+- R -> Rotate
+- B -> Spawn
+- Arrow right -> Switch between trampolines
+- Hold left click -> Drag trampoline
+- Q -> Quit to main menu
+
 **Have fun!**
+
+
+Itch.io link: *https://palkoka.itch.io/boing*
+
+Made by: https://github.com/schmidtnandor
+         https://github.com/csankodominik
+         https://github.com/babospal
