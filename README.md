@@ -32,6 +32,7 @@ You have to solve puzzles by strategically placing trampolines to bounce your wa
 
 Itch.io link: *https://palkoka.itch.io/boing*
 
-Made by: - https://github.com/schmidtnandor
-         - https://github.com/csankodominik
-         - https://github.com/babospal
+Made by: 
+- https://github.com/schmidtnandor
+- https://github.com/csankodominik
+- https://github.com/babospal
