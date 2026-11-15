@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             if (Draggable.selectedTrampoline is not null && Input.GetKey(KeyCode.R))
             {
                 Debug.Log("rotating");
-                Draggable.selectedTrampoline.transform.Rotate(new Vector3(0, 0, 0.3f));
+                Draggable.selectedTrampoline.transform.Rotate(new Vector3(0, 0, 0.3f *Time.deltaTime));
             }
 
             
@@ -210,7 +210,11 @@ public class PlayerController : MonoBehaviour
 
 
         }
-        rigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * movementSpeed, rigidbody.linearVelocity.y);
+        if(!isInPlacementMode)
+        {
+            rigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * movementSpeed, rigidbody.linearVelocity.y);
+
+        }
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0)
         {

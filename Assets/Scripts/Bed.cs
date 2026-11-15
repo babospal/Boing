@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Bed : MonoBehaviour
 {
+    public GameObject ending;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,8 +27,14 @@ public class Bed : MonoBehaviour
         }
         else
         {
-            Debug.Log("No more levels to load.");
+            Instantiate(ending);
+            Invoke("BackToMenu",5f);
+
         }
+    }
+    void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     // Update is called once per frame
     void Update()

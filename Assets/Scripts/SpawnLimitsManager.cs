@@ -57,5 +57,15 @@ public class SpawnLimitsManager : MonoBehaviour
             spawnableLargeCount = 2;
             spawnablex2JumpCount = 2;
         }
-       }
+        else if (SceneManager.GetActiveScene().name == "Level6")
+        {
+
+            spawnableNormalTCount = 2;
+            spawnableLGCount = 3;
+            spawnableLargeCount = 2;
+            spawnablex2JumpCount = 2;
+        }
     }
+}
+        
+    
