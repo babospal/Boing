@@ -21,49 +21,49 @@ public class SpawnLimitsManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name =="Level1")
         {
 
-            spawnableNormalTCount = 2;
-            spawnableLGCount = 3;
-            spawnableLargeCount = 2;
-            spawnablex2JumpCount = 2;
+            spawnableNormalTCount = 1;
+            spawnableLGCount = 1;
+            spawnableLargeCount = 1;
+            spawnablex2JumpCount = 1;
         }
         else if (SceneManager.GetActiveScene().name == "Level2")
         {
 
-            spawnableNormalTCount = 2;
-            spawnableLGCount = 3;
-            spawnableLargeCount = 2;
-            spawnablex2JumpCount = 2;
+            spawnableNormalTCount = 0;
+            spawnableLGCount = 2;
+            spawnableLargeCount = 0;
+            spawnablex2JumpCount = 0;
         }
         else if (SceneManager.GetActiveScene().name == "Level3")
         {
             spawnableNormalTCount = 2;
-            spawnableLGCount = 3;
-            spawnableLargeCount = 2;
-            spawnablex2JumpCount = 2;
+            spawnableLGCount = 1;
+            spawnableLargeCount = 0;
+            spawnablex2JumpCount = 0;
         }
         else if (SceneManager.GetActiveScene().name == "Level4")
         {
 
-            spawnableNormalTCount = 2;
-            spawnableLGCount = 3;
-            spawnableLargeCount = 2;
-            spawnablex2JumpCount = 2;
+            spawnableNormalTCount = 1;
+            spawnableLGCount = 2;
+            spawnableLargeCount = 0;
+            spawnablex2JumpCount = 1;
         }
       else if (SceneManager.GetActiveScene().name == "Level5")
         {
 
             spawnableNormalTCount = 2;
-            spawnableLGCount = 3;
-            spawnableLargeCount = 2;
-            spawnablex2JumpCount = 2;
+            spawnableLGCount = 4;
+            spawnableLargeCount = 0;
+            spawnablex2JumpCount = 1;
         }
         else if (SceneManager.GetActiveScene().name == "Level6")
         {
 
-            spawnableNormalTCount = 2;
-            spawnableLGCount = 3;
-            spawnableLargeCount = 2;
-            spawnablex2JumpCount = 2;
+            spawnableNormalTCount = 5;
+            spawnableLGCount = 0;
+            spawnableLargeCount = 0;
+            spawnablex2JumpCount = 0;
         }
     }
 }
