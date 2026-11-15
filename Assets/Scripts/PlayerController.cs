@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)] public float volume = 1f;
     private AudioSource audioSource;
 
+
     bool gameOver = false;
     public bool isOnGround = true;
     public bool usedPlacementMode = false;
@@ -189,12 +190,12 @@ public class PlayerController : MonoBehaviour
             isNormalGravity = true;
         }
 
-        if (isNormalGravity)
+        if (isNormalGravity )
         {
             gameObject.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y, 0);
 
         }
-        else
+        else 
         {
             gameObject.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y, 180);
 
@@ -208,12 +209,12 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0)
         {
-                if (isNormalGravity)
+                if (isNormalGravity && !isInPlacementMode)
                 {
                     this.gameObject.transform.localScale = new Vector3(-xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
                 }
-                else
+                else if(!isNormalGravity &&  !isInPlacementMode)
                 {
                     this.gameObject.transform.localScale = new Vector3(xScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
