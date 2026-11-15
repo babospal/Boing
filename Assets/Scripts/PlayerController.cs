@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour
     private Coroutine walkCoroutine;
     void Start()
     {
+        PhysicsMaterial2D noFriction = new PhysicsMaterial2D("No Friction") { friction = 0f, bounciness = 0f };
+        playerCollider.sharedMaterial = noFriction;
+
         spawnLimitsManagerScript = gameObject.GetComponent<SpawnLimitsManager>();
         audioSource = GetComponent<AudioSource>();
         audioSource.playOnAwake = false;
@@ -303,6 +306,7 @@ public class PlayerController : MonoBehaviour
                 rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 isOnZipline = false;
                 spriteRenderer.sprite = fly;
+                audioSource.Stop();
             }
         }
     }
