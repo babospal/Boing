@@ -160,6 +160,7 @@ MonoBehaviour:
   spawnedLarges: []
   spawnedLGs: []
   spawnedx2Jumps: []
+  gameOver: 0
   isOnGround: 1
   rigidbody: {fileID: 4428915765307476168}
   playerCollider: {fileID: 2636961860574049137}
@@ -174,6 +175,7 @@ MonoBehaviour:
   currentSpawnedTrampoline: {fileID: 0}
   selection: 0
   trampolineSelectorRenderer: {fileID: 0}
+  deathScreen: {fileID: 3499359341715870003, guid: 713c834c4037af04f83264914e4baa0c, type: 3}
   selectableTrampolines: []
   isInPlacementMode: 0
   Canvas: {fileID: 1103726387198637615, guid: 281663b847f0dea4899bd763e4dc58da, type: 3}

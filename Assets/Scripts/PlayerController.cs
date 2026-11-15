@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -18,8 +20,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-
-    bool gameOver = false;
+    public bool gameOver = false;
     public bool isOnGround = true;
     public Rigidbody2D rigidbody;
     public Collider2D playerCollider;
@@ -35,7 +36,6 @@ public class PlayerController : MonoBehaviour
     public GameObject currentSpawnedTrampoline;
     public int selection = 0;
     public Image trampolineSelectorRenderer;
-
     public List<GameObject> selectableTrampolines = new List<GameObject>();
     bool isNormalGravity = true;
     private Vector2 velocity = Vector2.zero;
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 spawnPoint;
     void Start()
     {
+      
         spawnLimitsManagerScript = gameObject.GetComponent<SpawnLimitsManager>();
         Instantiate(Canvas);
         Instantiate(eventSystem);
@@ -69,13 +70,12 @@ public class PlayerController : MonoBehaviour
         selectableTrampolines.Add(lowGravTrampoline);
         selectableTrampolines.Add(largeTrampoline);
         selectableTrampolines.Add(doubleJumpTrampoline);
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
         if (isInPlacementMode)
         {
             trampolineSelectorRenderer.gameObject.SetActive(true);
@@ -257,6 +257,7 @@ public class PlayerController : MonoBehaviour
                 isOnZipline = false;
             }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -265,7 +266,8 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(collision);
         if (collision.CompareTag("DeadlyObject"))
         {
-            Destroy(this.gameObject);
+            gameOver = true;
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
