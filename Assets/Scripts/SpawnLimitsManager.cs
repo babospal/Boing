@@ -15,7 +15,7 @@ public class SpawnLimitsManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   void Update()
     {
         
         if (SceneManager.GetActiveScene().name =="Level1")
@@ -26,7 +26,7 @@ public class SpawnLimitsManager : MonoBehaviour
             spawnableLargeCount = 2;
             spawnablex2JumpCount = 2;
         }
-        if (SceneManager.GetActiveScene().name == "Level2")
+        else if (SceneManager.GetActiveScene().name == "Level2")
         {
 
             spawnableNormalTCount = 2;
@@ -34,14 +34,14 @@ public class SpawnLimitsManager : MonoBehaviour
             spawnableLargeCount = 2;
             spawnablex2JumpCount = 2;
         }
-        if (SceneManager.GetActiveScene().name == "Level3")
+        else if (SceneManager.GetActiveScene().name == "Level3")
         {
             spawnableNormalTCount = 2;
             spawnableLGCount = 3;
             spawnableLargeCount = 2;
             spawnablex2JumpCount = 2;
         }
-        if (SceneManager.GetActiveScene().name == "Level4")
+        else if (SceneManager.GetActiveScene().name == "Level4")
         {
 
             spawnableNormalTCount = 2;
@@ -49,7 +49,7 @@ public class SpawnLimitsManager : MonoBehaviour
             spawnableLargeCount = 2;
             spawnablex2JumpCount = 2;
         }
-        if (SceneManager.GetActiveScene().name == "Level5")
+      else if (SceneManager.GetActiveScene().name == "Level5")
         {
 
             spawnableNormalTCount = 2;

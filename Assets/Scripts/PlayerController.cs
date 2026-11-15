@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 
@@ -269,13 +271,28 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        //Debug.Log(collision);
-        if (collision.CompareTag("DeadlyObject") && deathSound != null)
+        if (collision.CompareTag("DeadlyObject"))
         {
+            // Play the sound at the player's position
             AudioSource.PlayClipAtPoint(deathSound, transform.position, volume);
-            Destroy(this.gameObject);
+
+            // Hide or disable the player so it looks dead immediately
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            rigidbody.simulated = false; // Stop physics interactions
+
+            // Start a coroutine to reload the scene after a short delay
+            StartCoroutine(ReloadSceneAfterDelay(1f)); // 1 second delay (adjust as needed based on sound length)
         }
+    }
+
+    private System.Collections.IEnumerator ReloadSceneAfterDelay(float delay)
+    {
+        // Wait for the specified amount of seconds (realtime ensures it works even if timeScale is 0)
+        yield return new WaitForSecondsRealtime(delay);
+
+        // Now reload the scene
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
