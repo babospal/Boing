@@ -3,9 +3,11 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+[RequireComponent(typeof(AudioSource))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +19,11 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> spawnedx2Jumps;
 
 
-
+    [Header("Audio")]
+    public AudioClip deathSound;
+    public AudioClip ziplineSound;
+    [Range(0f, 1f)] public float volume = 1f;
+    private AudioSource audioSource;
 
     bool gameOver = false;
     public bool isOnGround = true;
@@ -52,6 +58,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         spawnLimitsManagerScript = gameObject.GetComponent<SpawnLimitsManager>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         Instantiate(Canvas);
         Instantiate(eventSystem);
         trampolineSelectorRenderer = GameObject.Find("trampolineChoiceRenderer2").GetComponent<Image>();
@@ -263,8 +271,9 @@ public class PlayerController : MonoBehaviour
     {
 
         //Debug.Log(collision);
-        if (collision.CompareTag("DeadlyObject"))
+        if (collision.CompareTag("DeadlyObject") && deathSound != null)
         {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, volume);
             Destroy(this.gameObject);
         }
     }
@@ -296,7 +305,13 @@ public class PlayerController : MonoBehaviour
             ziplineSr = collision.gameObject.GetComponent<SpriteRenderer>();
             rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             isOnZipline = true;
-            
+            if (ziplineSound != null)
+            {
+                audioSource.clip = ziplineSound;
+                audioSource.volume = volume;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
     }
 

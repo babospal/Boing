@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigTrampoline (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6441906282456693394, guid: f4169478195b2b24885cec80662468f7, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2073391854}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -473,6 +477,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1829463366672931048, guid: 4c981bec92964af4f95e9a92c83acb0d, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2073391854}
     - target: {fileID: 2642106336667138368, guid: 4c981bec92964af4f95e9a92c83acb0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -579,6 +587,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c981bec92964af4f95e9a92c83acb0d, type: 3}
+--- !u!82 &2073391854 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8264000569584946868, guid: 3279c3cd20326a24d8b9e238f0a0bfcb, type: 3}
+  m_PrefabInstance: {fileID: 4694824441254097691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &221245447162119758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -631,6 +644,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8261231575971402167, guid: 7916e0bc8c950db41ac993e6fe4b870b, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2073391854}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
