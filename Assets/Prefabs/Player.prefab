@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1290389704046159922}
   - component: {fileID: 4428915765307476168}
   - component: {fileID: 137874994313843492}
+  - component: {fileID: 1892001376327957481}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -154,10 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1a1850bd317914bb2754cce230f36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  spawnableNormalTCount: 2
-  spawnableLGCount: 3
-  spawnableLargeCount: 2
-  spawnablex2JumpCount: 2
+  spawnLimitsManagerScript: {fileID: 0}
   spawnedNormals: []
   spawnedLarges: []
   spawnedLGs: []
@@ -181,6 +179,7 @@ MonoBehaviour:
   Canvas: {fileID: 1103726387198637615, guid: 281663b847f0dea4899bd763e4dc58da, type: 3}
   eventSystem: {fileID: 6257872478304468606, guid: 388069076b4dbf1428c2a9a6ced07fa9, type: 3}
   remainingCounter: {fileID: 0}
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!50 &4428915765307476168
 Rigidbody2D:
   serializedVersion: 5
@@ -254,3 +253,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1892001376327957481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083322122273540381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbba692877baa5e4aada7e965ede21ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnLimitsManager
+  spawnableNormalTCount: 0
+  spawnableLGCount: 0
+  spawnableLargeCount: 0
+  spawnablex2JumpCount: 0
