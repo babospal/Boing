@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     bool gameOver = false;
     public bool isOnGround = true;
+    public bool usedPlacementMode = false;
     public Rigidbody2D rigidbody;
     public Collider2D playerCollider;
     public int enabledJumpCounter = 1;
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
         if (isInPlacementMode)
         {
+            
             trampolineSelectorRenderer.gameObject.SetActive(true);
             remainingCounter.gameObject.SetActive(true);
             if (Draggable.selectedTrampoline is not null && Input.GetKey(KeyCode.R))
@@ -172,11 +174,10 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else
+        else 
         {
             trampolineSelectorRenderer.gameObject.SetActive(false);
             remainingCounter.gameObject.SetActive(false);
-
 
         }
 
@@ -249,7 +250,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyUp(KeyCode.E) && !isInPlacementMode)
+        if (Input.GetKeyUp(KeyCode.E) && !isInPlacementMode && !usedPlacementMode)
         {
             isInPlacementMode = true;
 
@@ -257,7 +258,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.E) && isInPlacementMode)
         {
             isInPlacementMode = false;
-
+            usedPlacementMode = true;
         }
         if (isOnZipline)
         {
